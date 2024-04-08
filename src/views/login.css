@@ -1,0 +1,72 @@
+/* LoginPage.css */
+
+.container-fluid {
+    padding: 20px;
+}
+
+.title {
+    margin-top: 3px;
+    font-size: 2.3em;
+    color: #414002;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.subtitle {
+    margin-top: 0px;
+    font-size: 2.2em;
+    color: #414002;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+}
+
+.application-title {
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    color: #e10425;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Noto Serif', serif;
+}
+
+.login-page {
+    background-color: lightgray;
+}
+
+.inner-addon {
+    position: relative;
+}
+
+.inner-addon i {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+}
+
+.inner-addon input {
+    padding-left: 30px;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+button.cancelbtn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover, button.cancelbtn:hover {
+    opacity: 0.8;
+}
