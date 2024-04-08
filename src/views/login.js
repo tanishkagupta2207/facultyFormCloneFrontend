@@ -94,7 +94,7 @@ const Login = () => {
                                                 <button type="submit" name="submit" value="Submit" onClick={handleSubmit}>Login</button>
                                             </div>
                                             <div className="col-md-9">
-                                                <a href="https://ofa.iiti.ac.in/facrec_che_2023_july_02/faculty/forgot_password">
+                                                <a href="http://localhost:3000/forgetPassword">
                                                     <button type="button" className="cancelbtn pull-right">Reset Password</button>
                                                 </a>
                                             </div>
