@@ -14,24 +14,27 @@ const RegistrationForm = () => {
             const handleChange = (e) => {
                 setFormData({ ...formData, [e.target.name]: e.target.value });
             };
-        
+
             const handleSubmit = async (e) => {
                 e.preventDefault();
                 try {
-                    console.log(formData);
-                    if(formData.password !== formData.repswd){
+                    if (formData.password !== formData.repswd) {
                         alert('Password and confirm password do not match!!!');
                         window.location.reload();
-                    }
-                    else{
+                    } else {
                         const response = await axios.post('http://localhost:5000/api/register', formData);
                         console.log(response.data);
-                        if(response.message){
-                            alert(response.message);
+                        if (response.data.message) {
+                            alert(response.data.message);
                         }
                     }
                 } catch (error) {
-                    console.error('Registration error:', error.response.data);
+                    if (error.response && error.response.data && error.response.data.message) {
+                        alert(error.response.data.message);
+                    } else {
+                        alert('An error occurred. Please try again later.');
+                        console.error('Registration error:', error);
+                    }
                 }
             };
 
