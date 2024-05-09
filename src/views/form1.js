@@ -46,9 +46,11 @@ const ApplicationForm = () => {
 
   const fetchData = async () => {
     try {
+      console.log("fetching data");
       const response = await axios.get(`http://localhost:5000/api/form1/${userId}`);
       const data = response.data;
-      setFormData(data);
+      setFormData(data.data1);
+      console.log(data.data1);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -65,12 +67,11 @@ const ApplicationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:5000/api/form1${userId}`, formData );
+      const response = await axios.post(`http://localhost:5000/api/form1/${userId}`, formData );
       console.log(response.data);
-      
       if(response.data.message){
         alert(response.data.message);
-        if(response.data.message !== 'Logged in successfully'){
+        if(response.data.message !== 'Successful'){
           window.location.reload();
         }
         else{
