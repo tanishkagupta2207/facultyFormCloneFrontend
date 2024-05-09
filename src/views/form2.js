@@ -127,7 +127,7 @@ const AcademicDetails = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/form1/${userId}`);
+      const response = await axios.get(`http://localhost:5000/api/form2/${userId}`);
       const data = response.data;
       setAdditionalDetails(data);
       setPgDetails(data);

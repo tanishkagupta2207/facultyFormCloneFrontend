@@ -16,8 +16,8 @@ const EmploymentDetails = () => {
         position: '',
         employer: '',
         status: '',
-        doj: null,
-        dol: null,
+        doj: '',
+        dol: '',
         duration: '',
     });
 
@@ -25,8 +25,8 @@ const EmploymentDetails = () => {
     {
       position: '',
       employer: '',
-      doj: null,
-      dol: null,
+      doj: '',
+      dol: '',
       duration: '',
     },
   ]);
@@ -38,8 +38,8 @@ const EmploymentDetails = () => {
       course: '',
       ugpg: '',
       no_students: '',
-      doj: null,
-      dol: null,
+      doj: '',
+      dol: '',
       duration: '',
     },
   ]);
@@ -49,8 +49,8 @@ const EmploymentDetails = () => {
       position: '',
       institute: '',
       supervisor: '',
-      doj: null,
-      dol: null,
+      doj: '',
+      dol: '',
       duration: '',
     },
   ]);
@@ -59,8 +59,8 @@ const EmploymentDetails = () => {
     {
       organization: '',
       work: '',
-      doj: null,
-      dol: null,
+      doj: '',
+      dol: '',
       duration: '',
     },
   ]);
@@ -106,7 +106,7 @@ const EmploymentDetails = () => {
   };
   const fetchData = async () => {
         try {
-        const response = await axios.get(`http://localhost:5000/api/form1/${userId}`);
+        const response = await axios.get(`http://localhost:5000/api/form3/${userId}`);
         const data = response.data;
         setAreasOfSpecialization(data);
         setCurrentAreasOfResearch(data);
@@ -194,15 +194,15 @@ const EmploymentDetails = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/form3', );
+      const response = await axios.post(`http://localhost:5000/api/form3/${userId}`, );
       console.log(response.data);
       if(response.data.message){
         alert(response.data.message);
-        if(response.data.message !== 'Logged in successfully'){
+        if(response.data.message !== 'Successful'){
           window.location.reload();
         }
         else{
-          navigate(`/form3/${userId}`);
+          navigate(`/form4/${userId}`);
         }
       }
     } catch (error) {
