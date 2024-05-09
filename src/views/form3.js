@@ -193,21 +193,22 @@ const EmploymentDetails = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(`http://localhost:5000/api/form3/${userId}`, );
-      console.log(response.data);
-      if(response.data.message){
-        alert(response.data.message);
-        if(response.data.message !== 'Successful'){
-          window.location.reload();
-        }
-        else{
-          navigate(`/form4/${userId}`);
-        }
-      }
-    } catch (error) {
-      console.error('Login error:', error.response.data);
-    }
+    navigate(`/form4/${userId}`);
+    // try {
+    //   const response = await axios.post(`http://localhost:5000/api/form3/${userId}`, );
+    //   console.log(response.data);
+    //   if(response.data.message){
+    //     alert(response.data.message);
+    //     if(response.data.message !== 'Successful'){
+    //       window.location.reload();
+    //     }
+    //     else{
+    //       navigate(`/form4/${userId}`);
+    //     }
+    //   }
+    // } catch (error) {
+    //   console.error('Login error:', error.response.data);
+    // }
   };
 
   return (
