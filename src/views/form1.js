@@ -64,23 +64,22 @@ const ApplicationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate(`/form2/${userId}`);
-    // try {
-    //   const response = await axios.post(`http://localhost:5000/api/form1${userId}`, formData );
-    //   console.log(response.data);
+    try {
+      const response = await axios.post(`http://localhost:5000/api/form1${userId}`, formData );
+      console.log(response.data);
       
-    //   if(response.data.message){
-    //     alert(response.data.message);
-    //     if(response.data.message !== 'Logged in successfully'){
-    //       window.location.reload();
-    //     }
-    //     else{
-    //       navigate(`/form2/${userId}`);
-    //     }
-    //   }
-    // } catch (error) {
-    //   console.error('Login error:', error.response.data);
-    // }
+      if(response.data.message){
+        alert(response.data.message);
+        if(response.data.message !== 'Logged in successfully'){
+          window.location.reload();
+        }
+        else{
+          navigate(`/form2/${userId}`);
+        }
+      }
+    } catch (error) {
+      console.error('Login error:', error.response.data);
+    }
   }
 
   

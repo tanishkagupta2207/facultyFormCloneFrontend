@@ -179,22 +179,21 @@ const PublicationDetails = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    navigate(`/form5/${userId}`);
-    // try {
-    //   const response = await axios.post(`http://localhost:5000/api/form4/${userId}`, );
-    //   console.log(response.data);
-    //   if(response.data.message){
-    //     alert(response.data.message);
-    //     if(response.data.message !== 'Successful'){
-    //       window.location.reload();
-    //     }
-    //     else{
-    //       navigate(`/form5/${userId}`);
-    //     }
-    //   }
-    // } catch (error) {
-    //   console.error('Login error:', error.response.data);
-    // }
+    try {
+      const response = await axios.post(`http://localhost:5000/api/form4/${userId}`, );
+      console.log(response.data);
+      if(response.data.message){
+        alert(response.data.message);
+        if(response.data.message !== 'Successful'){
+          window.location.reload();
+        }
+        else{
+          navigate(`/form5/${userId}`);
+        }
+      }
+    } catch (error) {
+      console.error('Login error:', error.response.data);
+    }
   };
 
   return (
