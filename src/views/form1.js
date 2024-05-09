@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 const ApplicationForm = () => {
 
   const navigate = useNavigate(); 
-
+  const { userId } = useParams();
   const [formData, setFormData] = useState({
     advNum: '',
     doa: '',
@@ -45,7 +46,7 @@ const ApplicationForm = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/form1');
+      const response = await axios.get(`http://localhost:5000/api/form1/${userId}`);
       const data = response.data;
       setFormData(data);
     } catch (error) {
@@ -64,7 +65,7 @@ const ApplicationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/form1', formData );
+      const response = await axios.post(`http://localhost:5000/api/form1${userId}`, formData );
       console.log(response.data);
       if(response.data.message){
         alert(response.data.message);
@@ -72,7 +73,7 @@ const ApplicationForm = () => {
           window.location.reload();
         }
         else{
-          navigate(`/form1/${response.data.userId}`);
+          navigate(`/form2/${userId}`);
         }
       }
     } catch (error) {
@@ -144,11 +145,11 @@ const ApplicationForm = () => {
                         
                         <div class="col-md-3">
 
-                        <button type="button" className="btn btn-sm btn-info pull-right" data-toggle="modal" data-target="#passModal">Change Password</button>
+                        <button type="button" className="btn btn-sm btn-info pull-right" data-toggle="modal" data-target="#passModal" onClick={() => window.location.href = "http://localhost:3000/forgetPassword"}>Change Password</button>
 
                         </div>
                         <div class="col-md-1">
-                            <button type="button" className="btn btn-sm btn-success  pull-right">Logout</button>
+                            <button type="button" className="btn btn-sm btn-success  pull-right" onClick={() => window.location.href = "http://localhost:3000/"}>Logout</button>
                         </div>
                         </div>
                     </legend>
@@ -298,14 +299,12 @@ const ApplicationForm = () => {
                                    <div class="col-md-2" style={{padding: '9px'}}>
                                      <input id="id_card_file" name="userfile2" type="file" class="form-control input-md" />
                                   </div>
-                                   
                                   <span class="col-md-2 control-label" for="father_name">Father's Name *</span>
                                     <div class="col-md-4" style={{padding: '9px'}}>
                                     <input id="father_name" value={formData.fatherName} name="fatherName" type="text" placeholder="Father's Name" class="form-control input-md" maxlength="30" required="" onChange={handleChange}/>
                                     </div>
                                 </div>
                           </div>
-
                             <div class="col-md-2 pull-right">
                                         <img src="" class="thumbnail pull-right" height="150" width="130" />
                                 <input id="photo" name="userfile" type="file" class="form-control input-md" />
