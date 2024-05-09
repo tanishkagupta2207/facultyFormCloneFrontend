@@ -6,6 +6,7 @@ import ForgetPassword from "./views/forgetPassword";
 import ResetPassword from "./views/resetPassword";
 import AdmissionForm from "./views/form1";
 import AcademicDetails from "./views/form2";
+import EmploymentDetails from "./views/form3";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/resetPassword/:userId" element={<ResetPassword/>} />
           <Route path="/form1/:userId" element={<AdmissionForm/>} />
           <Route path="/form2/:userId" element={<AcademicDetails/>} />
+          <Route path="/form3/:userId" element={<EmploymentDetails/>} />
         </Routes>
       </div>
     </Router>

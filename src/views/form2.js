@@ -359,7 +359,7 @@ const AcademicDetails = () => {
 
                                     <label className="col-md-2 control-label" htmlFor={`ug_yoj_${index}`}>Year of Joining</label>
                                     <div className="col-md-4">
-                                        <input id={`ug_yoj_${index}`} name="ug_yoj" type="text" placeholder="Year of Joining" className="form-control input-md" value={detail.yoj} onChange={(e) => handleUgChange(index, e)} required />
+                                        <input id={`ug_yoj_${index}`} name="yoj" type="text" placeholder="Year of Joining" className="form-control input-md" value={detail.yoj} onChange={(e) => handleUgChange(index, e)} required />
                                     </div>
                                 </div>
 
