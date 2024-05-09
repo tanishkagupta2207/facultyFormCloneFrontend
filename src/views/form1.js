@@ -377,12 +377,12 @@ const ApplicationForm = () => {
 
                           <span class="col-md-2 control-label" for="mobile_2">Alternate Mobile </span>
                           <div class="col-md-4" style={{padding: '9px'}}>
-                          <input id="mobile_2" value={formData.mobile2} name="mobile_2" type="text" placeholder="Alternate Mobile " class="form-control input-md" maxlength="20" onChange={handleChange}></input>
+                          <input id="mobile2" value={formData.mobile2} name="mobile2" type="text" placeholder="Alternate Mobile " class="form-control input-md" maxlength="20" onChange={handleChange}></input>
                           </div>
 
                           <span class="col-md-2 control-label" for="email_2">Alternate Email </span>
                           <div class="col-md-4" style={{padding: '9px'}}>
-                          <input id="email_2" value={formData.email2} name="email_2" type="email" placeholder="Alternate Email" class="form-control input-md" onChange={handleChange}></input>
+                          <input id="email2" value={formData.email2} name="email2" type="text" placeholder="Alternate Email" class="form-control input-md" onChange={handleChange}></input>
                           </div>  
                           
                           <span class="col-md-2 control-label" for="landline">Landline Number</span>
@@ -404,8 +404,6 @@ const ApplicationForm = () => {
                     </div>
 
                   </div>
-
-                  {/* add the div for hide */}
                 </div>
                 </fieldset>
                 </form>
