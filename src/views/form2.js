@@ -128,14 +128,14 @@ const AcademicDetails = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(`http://localhost:5000/api/form2/${userId}`);
-      const data = response.data;
-      setAdditionalDetails(data);
-      setPgDetails(data);
-      setPhdDetails(data);
-      setSchoolDetails(data);
-      setUgDetails(data);
-      setFName(data);
-      setLName(data);
+      const {data1,data2,data3, data4, data5, data6, data7, data8} = response.data;
+      setAdditionalDetails(data1);
+      setPgDetails(data2);
+      setPhdDetails(data3);
+      setSchoolDetails(data4, data5);
+      setUgDetails(data6);
+      setFName(data7);
+      setLName(data8);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
