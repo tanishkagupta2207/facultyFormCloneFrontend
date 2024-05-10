@@ -179,7 +179,7 @@ const ApplicationForm = () => {
                           <br/>
                           <label class="col-md-2 control-label" for="ref_num">Application Number</label>
                           <div class="col-md-4">
-                            <input id="ref_num" name="refNum" type="text" value={formData.refNum} placeholder="" class="form-control input-md" required="" onChange={handleChange}/>
+                            <input id="ref_num" name="refNum" type="text" value={formData.refNum} placeholder="" readonly='readonly' class="form-control input-md" required=""/>
                           </div>
                           <br/>
                           <label class="col-md-2 control-label" for="post">Post Applied for *</label>
@@ -214,7 +214,7 @@ const ApplicationForm = () => {
 
                                   <span class="col-md-2 control-label" for="fname">First Name *</span>
                                     <div class="col-md-4" style={{padding: '9px'}}>
-                                    <input id="fname" value={formData.fname} name="fname" type="text" placeholder="First name" class="form-control input-md" maxlength="15" required="" onChange={handleChange}/>
+                                    <input id="fname" value={formData.fname} name="fname" type="text" readonly='readonly' placeholder="First name" class="form-control input-md" maxlength="15" required="" />
                                   </div>
 
                                   <span class="col-md-2 control-label" for="mname">Middle Name</span>
@@ -224,7 +224,7 @@ const ApplicationForm = () => {
 
                                   <span class="col-md-2 control-label" for="lname">Last Name *</span>
                                     <div class="col-md-4" style={{padding: '9px'}}>
-                                    <input id="lname" value={formData.lname} name="lname" type="text" placeholder="Last name" class="form-control input-md" maxlength="15" required="" onChange={handleChange}/>
+                                    <input id="lname" value={formData.lname} readonly='readonly' name="lname" type="text" placeholder="Last name" class="form-control input-md" maxlength="15" required="" />
                                     </div>
 
                                   <span class="col-md-2 control-label" for="nationality">Nationality *</span>
@@ -269,7 +269,7 @@ const ApplicationForm = () => {
 
                                   <span class="col-md-2 control-label" for="cast">Category</span>
                                   <div class="col-md-4" style={{padding: '9px'}}>
-                                    <input id="cast" name="cast" type="text" placeholder="cast" value={formData.cast} class="form-control input-md" required="" onChange={handleChange}/>
+                                    <input id="cast" name="cast" type="text" readonly='readonly' placeholder="cast" value={formData.cast} class="form-control input-md" required=""/>
                                   </div>
 
                                   <span class="col-md-2 control-label" for="disability_type">Type of Disability</span>
@@ -374,7 +374,7 @@ const ApplicationForm = () => {
 
                           <span class="col-md-2 control-label" for="email">Email</span>
                           <div class="col-md-4" style={{padding: '9px'}}>
-                          <input id="email" name="email" type="text" placeholder="email" readonly='readonly' value={formData.email} class="form-control input-md" required="" onChange={handleChange}></input>
+                          <input id="email" name="email" type="text" placeholder="email" readonly='readonly' value={formData.email} class="form-control input-md" required="" ></input>
                           </div>
 
                           <span class="col-md-2 control-label" for="mobile_2">Alternate Mobile </span>

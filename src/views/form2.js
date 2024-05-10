@@ -128,14 +128,16 @@ const AcademicDetails = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(`http://localhost:5000/api/form2/${userId}`);
-      const {data1,data2,data3, data4, data5, data6, data7, data8} = response.data;
-      setAdditionalDetails(data1);
+      console.log(response);
+      const {data1,data2,data3, data4, data5, fname, lname} = response.data;
+      console.log(data4);
+      setAdditionalDetails(data5);
       setPgDetails(data2);
-      setPhdDetails(data3);
-      setSchoolDetails(data4, data5);
-      setUgDetails(data6);
-      setFName(data7);
-      setLName(data8);
+      setPhdDetails(data1);
+      setSchoolDetails(data4);
+      setUgDetails(data3);
+      setFName(fname);
+      setLName(lname);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -148,7 +150,7 @@ const AcademicDetails = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:5000/api/form2/${userId}`, phdDetails, additionalDetails, schoolDetails, ugDetails, pgDetails);
+      const response = await axios.post(`http://localhost:5000/api/form2/${userId}`, {phdDetails, additionalDetails, schoolDetails, ugDetails, pgDetails});
       console.log(response.data);
       if(response.data.message){
         alert(response.data.message);
@@ -287,7 +289,7 @@ const AcademicDetails = () => {
                     <div className="panel panel-success">
                         <div className="panel-heading">(B) Academic Details - M. Tech./ M.E./ PG Details</div>
                         <div className="panel-body">
-                        {pgDetails.map((detail, index) => (
+                        { pgDetails && pgDetails.length>0 && pgDetails.map((detail, index) => (
                             <div key={index}>
                                 <div className="form-group">
                                     <label className="col-md-2 control-label" htmlFor={`pg_degree_${index}`}>Degree/Certificate</label>
@@ -347,7 +349,8 @@ const AcademicDetails = () => {
                     <div className="panel panel-success">
                         <div className="panel-heading">(C) Academic Details - B. Tech /B.E. / UG Details *</div>
                         <div className="panel-body">
-                        {ugDetails.map((detail, index) => (
+                        {ugDetails.length >0 && ugDetails.map((detail, index) => (
+                            
                             <div key={index}>
                                 <div className="form-group">
                                     <label className="col-md-2 control-label" htmlFor={`ug_degree_${index}`}>Degree/Certificate</label>
@@ -419,7 +422,7 @@ const AcademicDetails = () => {
                             </tr>
                             </thead>
                             <tbody>
-                            {schoolDetails.map((detail, index) => (
+                            {schoolDetails.length>0 && schoolDetails.map((detail, index) => (
                                 <tr key={index}>
                                 <td>
                                     <input id={`school_type_${index}`} name="type" type="text" value={detail.type} placeholder="" className="form-control input-md" readOnly required />
@@ -462,7 +465,7 @@ const AcademicDetails = () => {
                         <div className="panel-body">
                         <table className="table table-bordered">
                             <tbody>
-                            {additionalDetails.map((detail, index) => (
+                            {additionalDetails.length>0 && additionalDetails.map((detail, index) => (
                                 <tr key={index}>
                                 <td>
                                     <input id={`additional_degree_${index}`} name="degree" type="text" placeholder="Degree/Certificate" className="form-control input-md" value={detail.degree} onChange={(e) => handleAdditionalChange(index, e)} />
