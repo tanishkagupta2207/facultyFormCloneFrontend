@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -96,19 +95,9 @@ const EmploymentDetails = () => {
     setIndustrialExperience(values);
   };
 
-  const handleAreasOfSpecializationChange = (value) => {
-    setAreasOfSpecialization(value);
-  };
-
-
-  const handleCurrentAreasOfResearchChange = (value) => {
-    setCurrentAreasOfResearch(value);
-  };
   const fetchData = async () => {
         try {
-          console.log("before");
         const response = await axios.get(`http://localhost:5000/api/form3/${userId}`);
-        console.log("fetched");
         const {data1,data2,data3,data4,data5,data6,data7,data8,data9} = response.data;
         setPresentEmployment(data1);
         setExperienceDetails(data2);
@@ -199,8 +188,7 @@ const EmploymentDetails = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:5000/api/form3/${userId}`, presentEmployment,experienceDetails,teachingExperience, researchExperience, industrialExperience, areasOfSpecialization, currentAreasOfResearch);
-      console.log(response);
+      const response = await axios.post(`http://localhost:5000/api/form3/${userId}`, {presentEmployment,experienceDetails,teachingExperience, researchExperience, industrialExperience, areasOfSpecialization, currentAreasOfResearch});
       if(response.data.message){
         alert(response.data.message);
         if(response.data.message !== 'Successful'){
@@ -224,9 +212,7 @@ const EmploymentDetails = () => {
       navigate(`/form2/${userId}`);
     }
   }
-  
   return (
-    
         <html>
             <head>
                 <title>Employment Details</title>
@@ -352,11 +338,11 @@ const EmploymentDetails = () => {
                                     </td>
 
                                     <td>
-                                    <DatePicker id={`exp_doj_${index}`} name="doj" selected={detail.doj} placeholderText="Date of Joining" onChange={(date) => setExperienceDetails(experienceDetails.map((item, i) => i === index ? { ...item, doj: date } : item))} required />
+                                    <input id={`exp_doj_${index}`} name="doj" type='text' className="form-control input-md" value={detail.doj} placeholder="Date of Joining" onChange={(e) => handleExperienceChange(index, e)} required />
                                     </td>
 
                                     <td>
-                                    <DatePicker id={`exp_dol_${index}`} name="dol" placeholderText="Date of Leaving" selected={detail.dol} onChange={(date) => setExperienceDetails(experienceDetails.map((item, i) => i === index ? { ...item, dol: date } : item))} required />
+                                    <input id={`exp_dol_${index}`} name="dol" type='text' className="form-control input-md" placeholder="Date of Leaving" value={detail.dol} onChange={(e) => handleExperienceChange(index, e)} required />
                                     </td>
 
                                     <td>
@@ -409,11 +395,11 @@ const EmploymentDetails = () => {
                                     </td>
 
                                     <td>
-                                    <DatePicker id={`t_exp_doj_${index}`} name="doj" placeholderText="Date of Joining" selected={detail.doj} onChange={(date) => setTeachingExperience(teachingExperience.map((item, i) => i === index ? { ...item, doj: date } : item))} required />
+                                    <input id={`t_exp_doj_${index}`} className="form-control input-md" type='text' name="doj" placeholder="Date of Joining" value={detail.doj} onChange={(e) => handleTeachingExperienceChange(index, e)} required />
                                     </td>
 
                                     <td>
-                                    <DatePicker id={`t_exp_dol_${index}`} name="dol" placeholderText="Date of Leaving" selected={detail.dol} onChange={(date) => setTeachingExperience(teachingExperience.map((item, i) => i === index ? { ...item, dol: date } : item))} required />
+                                    <input id={`t_exp_dol_${index}`} className="form-control input-md" type='text' name="dol" placeholder="Date of Leaving" value={detail.dol} onChange={(e) => handleTeachingExperienceChange(index, e)} required />
                                     </td>
 
                                     <td>
@@ -458,11 +444,11 @@ const EmploymentDetails = () => {
                                     </td>
 
                                     <td>
-                                    <DatePicker id={`r_exp_doj_${index}`} name="doj" selected={detail.doj} placeholderText="Date of Joining" onChange={(date) => setResearchExperience(researchExperience.map((item, i) => i === index ? { ...item, doj: date } : item))} required />
+                                    <input id={`r_exp_doj_${index}`} name="doj" value={detail.doj} type='text' className="form-control input-md" placeholder="Date of Joining" onChange={(e) => handleResearchExperienceChange(index, e)} required />
                                     </td>
 
                                     <td>
-                                    <DatePicker id={`r_exp_dol_${index}`} name="dol" selected={detail.dol} placeholderText="Date of Leaving" onChange={(date) => setResearchExperience(researchExperience.map((item, i) => i === index ? { ...item, dol: date } : item))} required />
+                                    <input id={`r_exp_dol_${index}`} name="dol" value={detail.dol} type='text' className="form-control input-md" placeholder="Date of Leaving" onChange={(e) => handleResearchExperienceChange(index, e)} required />
                                     </td>
 
                                     <td>
@@ -502,11 +488,11 @@ const EmploymentDetails = () => {
                                     </td>
 
                                     <td>
-                                    <DatePicker id={`i_exp_doj_${index}`} name="doj" placeholderText="Date of Joining" selected={detail.doj} onChange={(date) => setIndustrialExperience(industrialExperience.map((item, i) => i === index ? { ...item, doj: date } : item))} required />
+                                    <input id={`i_exp_doj_${index}`} name="doj" placeholder="Date of Joining" type='text' className="form-control input-md" value={detail.doj} onChange={(e) => handleIndustrialExperienceChange(index,e)} required />
                                     </td>
 
                                     <td>
-                                    <DatePicker id={`i_exp_dol_${index}`} name="dol" selected={detail.dol} placeholderText="Date of Leaving" onChange={(date) => setIndustrialExperience(industrialExperience.map((item, i) => i === index ? { ...item, dol: date } : item))} required />
+                                    <input id={`i_exp_dol_${index}`} name="dol" value={detail.dol} type='text' className="form-control input-md" placeholder="Date of Leaving" onChange={(e) => handleIndustrialExperienceChange(index,e)} required />
                                     </td>
 
                                     <td>
@@ -532,7 +518,7 @@ const EmploymentDetails = () => {
                         <div class="panel panel-success">
                         <div class="panel-body">
                             <strong>Areas of specialization</strong>
-                            <textarea style={{height:'150px'}} placeholder="Areas of specialization" class="form-control input-md" name="area_spl" maxlength="500" onChange={handleAreasOfSpecializationChange} value={areasOfSpecialization} required=""></textarea>
+                            <textarea style={{height:'150px'}} placeholder="Areas of specialization" class="form-control input-md" name="area_spl" maxlength="500" onChange={(e)=> setAreasOfSpecialization(e.target.value)} value={areasOfSpecialization} required=""></textarea>
                         </div>
                         </div>
                     </div>
@@ -541,14 +527,14 @@ const EmploymentDetails = () => {
                         <div class="panel panel-success">
                         <div class="panel-body">
                             <strong>Current Area of research</strong>
-                            <textarea style={{height:'150px'}} placeholder="Current Area of research" class="form-control input-md" name="area_rese" maxlength="500" onChange={handleCurrentAreasOfResearchChange} value={currentAreasOfResearch} required=""></textarea>
+                            <textarea style={{height:'150px'}} type='text' placeholder="Current Area of research" class="form-control input-md" name="area_rese" maxlength="500" onChange={(e) => setCurrentAreasOfResearch(e.target.value)} value={currentAreasOfResearch} required=""></textarea>
                         </div>
                         </div>
                     </div>
                     </div>
                     
                     <div className="col-md-11">
-                    <button id="back" type="back" name="back" value="Back" class="btn btn-success pull-left" >BACK</button>
+                    <button id="back" type="back" name="back" value="Back" class="btn btn-success pull-left" onClick={handleBack}>BACK</button>
                     </div>
                     
                     <div class="col-md-11">
