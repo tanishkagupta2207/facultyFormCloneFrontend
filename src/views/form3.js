@@ -107,13 +107,16 @@ const EmploymentDetails = () => {
   const fetchData = async () => {
         try {
         const response = await axios.get(`http://localhost:5000/api/form3/${userId}`);
-        const data = response.data;
-        setAreasOfSpecialization(data);
-        setCurrentAreasOfResearch(data);
-        setExperienceDetails(data);
-        setIndustrialExperience(data);
-        setFName(data);
-        setLName(data);
+        const {data1,data2,data3,data4,data5,data6,data7,data8,data9} = response.data;
+        setPresentEmployment(data1);
+        setExperienceDetails(data2);
+        setTeachingExperience(data3);
+        setResearchExperience(data4);
+        setIndustrialExperience(data5);
+        setAreasOfSpecialization(data6);
+        setCurrentAreasOfResearch(data7);
+        setFName(data8);
+        setLName(data9);
         } catch (error) {
         console.error('Error fetching data:', error);
         }
@@ -194,7 +197,7 @@ const EmploymentDetails = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:5000/api/form3/${userId}`, );
+      const response = await axios.post(`http://localhost:5000/api/form3/${userId}`, presentEmployment,experienceDetails,teachingExperience, researchExperience, industrialExperience, areasOfSpecialization, currentAreasOfResearch);
       console.log(response.data);
       if(response.data.message){
         alert(response.data.message);
@@ -210,6 +213,16 @@ const EmploymentDetails = () => {
     }
   };
 
+  const handleBack = async(e) => {
+    e.preventDefault();
+    try {
+      navigate(`/form2/${userId}`);
+    }
+    catch(error){
+      navigate(`/form2/${userId}`);
+    }
+  }
+  
   return (
     
         <html>
@@ -517,7 +530,7 @@ const EmploymentDetails = () => {
                         <div class="panel panel-success">
                         <div class="panel-body">
                             <strong>Areas of specialization</strong>
-                            <textarea style={{height:'150px'}} placeholder="Areas of specialization" class="form-control input-md" name="area_spl" maxlength="500" required=""></textarea>
+                            <textarea style={{height:'150px'}} placeholder="Areas of specialization" class="form-control input-md" name="area_spl" maxlength="500" onChange={handleAreasOfSpecializationChange} value={areasOfSpecialization} required=""></textarea>
                         </div>
                         </div>
                     </div>
@@ -526,15 +539,21 @@ const EmploymentDetails = () => {
                         <div class="panel panel-success">
                         <div class="panel-body">
                             <strong>Current Area of research</strong>
-                            <textarea style={{height:'150px'}} placeholder="Current Area of research" class="form-control input-md" name="area_rese" maxlength="500" required=""></textarea>
+                            <textarea style={{height:'150px'}} placeholder="Current Area of research" class="form-control input-md" name="area_rese" maxlength="500" onChange={handleCurrentAreasOfResearchChange} value={currentAreasOfResearch} required=""></textarea>
                         </div>
                         </div>
                     </div>
                     </div>
-
+                    
+                    <div className="col-md-11">
+                    <button id="back" type="back" name="back" value="Back" class="btn btn-success pull-left" >BACK</button>
+                    </div>
+                    
                     <div class="col-md-11">
                         <button id="submit" type="submit" name="submit" value="Submit" class="btn btn-success pull-right" style={{marginLeft: '75%'}}>SAVE & NEXT</button>
                     </div>
+
+                    
                     </div>
                     </fieldset>
                     </form>

@@ -164,6 +164,16 @@ const AcademicDetails = () => {
     }
   };
 
+  const handleBack = async(e) => {
+    e.preventDefault();
+    try {
+      navigate(`/form1/${userId}`);
+    }
+    catch(error){
+      navigate(`/form1/${userId}`);
+    }
+  }
+
   return (
     <div>
     <html>
@@ -498,8 +508,8 @@ const AcademicDetails = () => {
                     </div>
                     </div>
                 </div><div className="form-group">
-                    <div className="col-md-1">
-                    <a href="#" className="btn btn-primary pull-left"><i className="glyphicon glyphicon-fast-backward"></i></a>
+                <div className="col-md-11">
+                    <button id="back" type="back" name="back" value="Back" className="btn btn-success pull-left"> onClick= {handleBack}BACK</button>
                     </div>
 
                     <div className="col-md-11">
