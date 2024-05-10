@@ -512,7 +512,7 @@ const AcademicDetails = () => {
                     </div>
                 </div><div className="form-group">
                 <div className="col-md-11">
-                    <button id="back" type="back" name="back" value="Back" className="btn btn-success pull-left"> onClick= {handleBack}BACK</button>
+                    <button id="back" type="back" name="back" value="Back" className="btn btn-success pull-left" onClick= {handleBack}>BACK</button>
                     </div>
 
                     <div className="col-md-11">
