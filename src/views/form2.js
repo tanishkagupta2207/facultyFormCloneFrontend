@@ -128,12 +128,13 @@ const AcademicDetails = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(`http://localhost:5000/api/form2/${userId}`);
-      const {data1,data2,data3, data4, data5, data6, fname, lname} = response.data;
-      console.log(data3,data4);
-      setAdditionalDetails(data6);
+      console.log(response);
+      const {data1,data2,data3, data4, data5, fname, lname} = response.data;
+      console.log(data4);
+      setAdditionalDetails(data5);
       setPgDetails(data2);
       setPhdDetails(data1);
-      setSchoolDetails(data4, data5);
+      setSchoolDetails(data4);
       setUgDetails(data3);
       setFName(fname);
       setLName(lname);
@@ -149,7 +150,7 @@ const AcademicDetails = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:5000/api/form2/${userId}`, phdDetails, additionalDetails, schoolDetails, ugDetails, pgDetails);
+      const response = await axios.post(`http://localhost:5000/api/form2/${userId}`, {phdDetails, additionalDetails, schoolDetails, ugDetails, pgDetails});
       console.log(response.data);
       if(response.data.message){
         alert(response.data.message);
@@ -164,9 +165,6 @@ const AcademicDetails = () => {
       console.error('Login error:', error.response.data);
     }
   };
-
-  console.log(ugDetails);
-  console.log("uglen: ",ugDetails.length);
 
   return (
     <div>
