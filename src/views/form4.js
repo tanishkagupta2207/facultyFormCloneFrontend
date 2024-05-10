@@ -12,8 +12,7 @@ const PublicationDetails = () => {
   const [lname,setLName] = useState('');
   const { userId } = useParams();
   const [gschlink, setGschlink] = useState('');
-  const [summaryOfPublication, setSummaryOfPublication] = useState([
-    {
+  const [summaryOfPublication, setSummaryOfPublication] = useState({
       noIntlJour: '',
       noNntlJour: '',
       noIntlConf: '',
@@ -21,8 +20,7 @@ const PublicationDetails = () => {
       noPat: '',
       noBooks: '',
       noBookChap: ''
-    },
-  ]);
+    });
 
   const [tenBestPub, setTenBestPub] = useState([
     {
@@ -84,12 +82,10 @@ const PublicationDetails = () => {
     setTenBestPub(values);
   };
 
-  const handleSummaryOfPublication = (index,e)=>{
+  const handleSummaryOfPublication = (e)=>{
     console.log(e);
-    const values = [...summaryOfPublication];
-    values[index][e.target.name] = e.target.value;
-    setSummaryOfPublication(values);
-  }
+    setSummaryOfPublication({...summaryOfPublication,[e.target.name]: e.target.value});
+  };
 
   const handleAddTenBestPub = () => {
     setTenBestPub([...tenBestPub, {
@@ -160,14 +156,16 @@ const PublicationDetails = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(`http://localhost:5000/api/form4/${userId}`);
-      const data = response.data;
-      setBook(data);
-      setBookChap(data);
-      setPatents(data);
-      setSummaryOfPublication(data);
-      setTenBestPub(data);
-      setFName(data);
-      setLName(data);
+      const {data1, data2, data3, data4, data5, gschlink, fname, lname} = response.data;
+      setSummaryOfPublication(data1);
+      setTenBestPub(data2);
+      setPatents(data3);
+      setBook(data4);
+      setBookChap(data5);
+      setGschlink(gschlink);
+      setFName(fname);
+      setLName(lname);
+      
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -179,8 +177,10 @@ const PublicationDetails = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+    console.log(summaryOfPublication);
+    console.log(patents);
     try {
-      const response = await axios.post(`http://localhost:5000/api/form4/${userId}`, );
+      const response = await axios.post(`http://localhost:5000/api/form4/${userId}`, {summaryOfPublication, tenBestPub, patents, book, bookChap, gschlink});
       console.log(response.data);
       if(response.data.message){
         alert(response.data.message);
@@ -188,13 +188,23 @@ const PublicationDetails = () => {
           window.location.reload();
         }
         else{
-          navigate(`/form5/${userId}`);
+          navigate(`/form2/${userId}`);
         }
       }
     } catch (error) {
       console.error('Login error:', error.response.data);
     }
   };
+
+  const handleBack = async(e) => {
+    e.preventDefault();
+    try {
+      navigate(`/form3/${userId}`);
+    }
+    catch(error){
+      navigate(`/form3/${userId}`);
+    }
+  }
 
   return (
 
@@ -262,37 +272,37 @@ const PublicationDetails = () => {
                         <div className="row">
                           <div className="col-md-5 control-label" for="summary_journal_inter">Number of International Journal Papers</div>
                           <div className="col-md-1">
-                            <input id="summary_journal_inter" value={summaryOfPublication.noIntlJour} name="noIntlJour" type="text" placeholder="" className="form-control input-md" required="" maxLength="3" onChange={(e) => handleSummaryOfPublication(0,e)} />
+                            <input id="summary_journal_inter" value={summaryOfPublication.noIntlJour} name="noIntlJour" type="text" placeholder="" className="form-control input-md" required="" maxLength="3" onChange={(e) => handleSummaryOfPublication(e)} />
                           </div>
                           <div className="col-md-5 control-label" for="summary_journal">Number of National Journal Papers</div>
                           <div className="col-md-1">
-                            <input id="summary_journal" value={summaryOfPublication.noNntlJour} name="noNntlJour" type="text" placeholder="" className="form-control input-md" required="" maxLength="3" onChange={(e) => handleSummaryOfPublication(0,e)}/>
+                            <input id="summary_journal" value={summaryOfPublication.noNntlJour} name="noNntlJour" type="text" placeholder="" className="form-control input-md" required="" maxLength="3" onChange={(e) => handleSummaryOfPublication(e)}/>
                           </div>
                         </div>
                         <div className="row">
                           <div className="col-md-5 control-label" for="summary_conf_inter">Number of International Conference Papers</div>
                           <div className="col-md-1">
-                            <input id="summary_conf_inter" value={summaryOfPublication.noIntlConf} name="noIntlConf" type="text" placeholder="" className="form-control input-md" required="" maxLength="3" onChange={(e) => handleSummaryOfPublication(0,e)}/>
+                            <input id="summary_conf_inter" value={summaryOfPublication.noIntlConf} name="noIntlConf" type="text" placeholder="" className="form-control input-md" required="" maxLength="3" onChange={(e) => handleSummaryOfPublication(e)}/>
                           </div>
                           <div className="col-md-5 control-label" for="summary_conf_national">Number of National Conference Papers</div>
                           <div className="col-md-1">
-                            <input id="summary_conf_national" value={summaryOfPublication.noNntlConf} name="noNntlConf" type="text" placeholder="" className="form-control input-md" required="" maxLength="3" onChange={(e) => handleSummaryOfPublication(0,e)}/>
+                            <input id="summary_conf_national" value={summaryOfPublication.noNntlConf} name="noNntlConf" type="text" placeholder="" className="form-control input-md" required="" maxLength="3" onChange={(e) => handleSummaryOfPublication(e)}/>
                           </div>
                         </div>
                         <div className="row">
                           <div className="col-md-5 control-label" for="patent_publish">Number of Patent(s) [Filed, Published, Granted] </div>
                           <div className="col-md-1">
-                            <input id="patent_publish" value={summaryOfPublication.noPat} name="noPat" type="text" placeholder="" className="form-control input-md" required="" maxLength="3" onChange={(e) => handleSummaryOfPublication(0,e)}/>
+                            <input id="patent_publish" value={summaryOfPublication.noPat} name="noPat" type="text" placeholder="" className="form-control input-md" required="" maxLength="3" onChange={(e) => handleSummaryOfPublication(e)}/>
                           </div>
                           <div className="col-md-5 control-label" for="summary_book">Number of Book(s) </div>
                           <div className="col-md-1">
-                            <input id="summary_book" value={summaryOfPublication.noBooks} name="noBooks" type="text" placeholder="" className="form-control input-md" required="" maxLength="3" onChange={(e) => handleSummaryOfPublication(0,e)}/>
+                            <input id="summary_book" value={summaryOfPublication.noBooks} name="noBooks" type="text" placeholder="" className="form-control input-md" required="" maxLength="3" onChange={(e) => handleSummaryOfPublication(e)}/>
                           </div>
                         </div>
                         <div className="row">
                           <div className="col-md-5 control-label" for="summary_book_chapter">Number of Book Chapter(s)</div>
                           <div className="col-md-1">
-                            <input id="summary_book_chapter" value={summaryOfPublication.noBookChap} name="noBookChap" type="text" placeholder="" className="form-control input-md" required="" maxLength="3" onChange={(e) => handleSummaryOfPublication(0,e)}/>
+                            <input id="summary_book_chapter" value={summaryOfPublication.noBookChap} name="noBookChap" type="text" placeholder="" className="form-control input-md" required="" maxLength="3" onChange={(e) => handleSummaryOfPublication(e)}/>
                           </div>
                         </div>
                       </div>
@@ -513,8 +523,10 @@ const PublicationDetails = () => {
                     </div>
                   </div>
                 </div>
-
                 <div className="form-group">
+                  <div className="col-md-11">
+                    <button id="back" type="back" name="back" value="Back" className="btn btn-success pull-left" onClick= {handleBack}>BACK</button>
+                  </div>
                   <div className="col-md-11">
                     <button id="submit" type="submit" name="submit" value="Submit" className="btn btn-success pull-right" onClick={handleSubmit}>SAVE & NEXT</button>
                   </div>
