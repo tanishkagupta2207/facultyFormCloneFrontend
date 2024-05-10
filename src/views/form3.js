@@ -189,17 +189,17 @@ const EmploymentDetails = () => {
     e.preventDefault();
     try {
       const response = await axios.post(`http://localhost:5000/api/form3/${userId}`, {presentEmployment,experienceDetails,teachingExperience, researchExperience, industrialExperience, areasOfSpecialization, currentAreasOfResearch});
-      if(response.data.message){
+      console.log(response);
+      if(response.data){
         alert(response.data.message);
         if(response.data.message !== 'Successful'){
-          window.location.reload();
         }
         else{
           navigate(`/form4/${userId}`);
         }
       }
     } catch (error) {
-      console.error('Login error:', error.response.data);
+      console.error('Login error:', error.response);
     }
   };
 
@@ -249,7 +249,7 @@ const EmploymentDetails = () => {
             <h3 style={{color: '#e10425', marginBottom: '20px', fontWeight: 'bold', textAlign: 'center',fontFamily: 'Noto Serif'}} class="blink_me">Application for Faculty Position</h3>
                 
             <div class="col-xs-12 col-sm-12 col-md-12 well"  style={{paddingLeft:'200px', paddingRight: '200px'}}>
-                <form className="form-horizontal" onSubmit={handleSubmit} >
+                <form className="form-horizontal" >
                 <fieldset>
                     <legend>
                     <div className="row">
@@ -538,7 +538,7 @@ const EmploymentDetails = () => {
                     </div>
                     
                     <div class="col-md-11">
-                        <button id="submit" type="submit" name="submit" value="Submit" class="btn btn-success pull-right" style={{marginLeft: '75%'}}>SAVE & NEXT</button>
+                        <button id="submit" type="submit" name="submit" value="Submit" class="btn btn-success pull-right" style={{marginLeft: '75%'}} onClick={handleSubmit}>SAVE & NEXT</button>
                     </div>
 
                     
