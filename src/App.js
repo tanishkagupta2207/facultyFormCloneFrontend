@@ -8,6 +8,8 @@ import AdmissionForm from "./views/form1";
 import AcademicDetails from "./views/form2";
 import EmploymentDetails from "./views/form3";
 import PublicationDetails from "./views/form4";
+import RelInfo from "./views/form7";
+import SubmitForm from "./views/submit";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path="/form2/:userId" element={<AcademicDetails/>} />
           <Route path="/form3/:userId" element={<EmploymentDetails/>} />
           <Route path="/form4/:userId" element={<PublicationDetails/>} />
+          <Route path="/submit/:userId" element={<SubmitForm/>} />
+          <Route path="/form7/:userId" element={<RelInfo/>} />
         </Routes>
       </div>
     </Router>
