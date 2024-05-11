@@ -12,7 +12,7 @@ const ForgetPassword = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://facultyForm-backend:5000/api/forgetPassword', { emailId });
+            const response = await axios.post('http://localhost:5000/api/forgetPassword', { emailId });
             console.log('Response:', response.data); 
             if(response.data.message !== 'Password reset link sent on mail_id'){
                 alert('Enter correct emailId!');

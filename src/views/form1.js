@@ -47,7 +47,7 @@ const ApplicationForm = () => {
   const fetchData = async () => {
     try {
       console.log("fetching data");
-      const response = await axios.get(`http://facultyForm-backend:5000/api/form1/${userId}`);
+      const response = await axios.get(`http://localhost:5000/api/form1/${userId}`);
       const data = response.data;
       setFormData(data.data1);
       console.log(data.data1);
@@ -67,7 +67,7 @@ const ApplicationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://facultyForm-backend:5000/api/form1/${userId}`, formData );
+      const response = await axios.post(`http://localhost:5000/api/form1/${userId}`, formData );
       console.log(response.data);
       if(response.data.message){
         alert(response.data.message);

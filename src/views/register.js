@@ -22,7 +22,7 @@ const RegistrationForm = () => {
                         alert('Password and confirm password do not match!!!');
                         window.location.reload();
                     } else {
-                        const response = await axios.post('http://facultyForm-backend:5000/api/register', formData);
+                        const response = await axios.post('http://localhost:5000/api/register', formData);
                         console.log(response.data);
                         if (response.data.message) {
                             alert(response.data.message);

@@ -18,7 +18,7 @@ const Login = () => {
             const handleSubmit = async (e) => {
                 e.preventDefault();
                 try {
-                    const response = await axios.post('http://facultyForm-backend:5000/api/login', formData);
+                    const response = await axios.post('http://localhost:5000/api/login', formData);
                     console.log(response.data);
                     if(response.data.message){
                         alert(response.data.message);

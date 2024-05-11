@@ -22,7 +22,7 @@ const ResetPassword = () => {
                 alert('Password and confirm password do not match!!!');
                 return; // Return early if passwords don't match
             }
-            const response = await axios.post(`http://facultyForm-backend:5000/api/resetPassword/${userId}`, formData);
+            const response = await axios.post(`http://localhost:5000/api/resetPassword/${userId}`, formData);
             console.log(response.data);
             if (response.data.message) {
                 alert(response.data.message);
