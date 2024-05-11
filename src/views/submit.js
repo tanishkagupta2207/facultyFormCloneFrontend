@@ -114,9 +114,14 @@ const SubmitForm = () => {
                         <div className="panel-body">
                         
                   <div class="form-group">
-                  <div>
-                        <input type="text" value={"I hereby declare that I have carefully read and understood the instructions and particulars mentioned in the advertisment and this application form. I further declare that all the entries along with the attachments uploaded in this form are true to the best of my knowledge and belief."} readOnly={true} style={{ border: 'none', backgroundColor: '#f0f0f0', color: 'black', padding: '5px',width: '100%', whiteSpace: 'pre-wrap', overflowWrap: 'break-word' }}/>
-                  </div>
+                  {/* <div>
+                        <input type="text" value={"I hereby declare that I have carefully read and understood the instructions and particulars mentioned in the advertisment and this application form. I further declare that all the entries along with the attachments uploaded in this form are true to the best of my knowledge and belief."} readOnly={true} style={{ border: 'none', backgroundColor: '#f0f0f0', color: 'black', padding: '5px',width: '1100px', height: '100px', whiteSpace: 'pre-wrap' }}/>
+                  </div> */}
+                    <textarea style={{height:"70px"}} placeholder="" class="form-control input-md" name="my_state" readonly="">
+                I hereby declare that I have carefully read and understood the instructions and particulars mentioned in the advertisment and this application form. I further declare that all the entries along with the attachments uploaded in this form are true to the best of my knowledge and belief.
+              </textarea>
+
+          <input type="checkbox" name="decl_status" value="1" required={true} />  
                   </div>
                   </div>
                     <div class="col-md-12">
