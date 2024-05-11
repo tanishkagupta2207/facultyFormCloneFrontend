@@ -129,69 +129,110 @@ const RelInfo = () => {
                 </div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="research_statement">14. Significant research contribution and future plans *</label>
+        <div className="panel panel-success">
+          <div className="panel-heading"style={{ fontWeight: 'bold' }}>14. Significant research contribution and future plans *&nbsp;&nbsp;
+              <div className="panel-body">
           <textarea
             id="research_statement"
             name="research_statement"
             className="form-control"
-            rows="5"
+            rows="4.5"
+            required = {true}
             value={researchStatement}
             onChange={(e) => setResearchStatement(e.target.value)}
           ></textarea>
         </div>
+        </div>
+        </div>
+        </div>
         <div className="form-group">
-          <label htmlFor="teaching_statement">15. Significant teaching contribution and future plans *</label>
+        <div className="panel panel-success">
+          <div className="panel-heading"style={{ fontWeight: 'bold' }}>15. Significant teaching contribution and future plans * &nbsp;&nbsp;
+              <div className="panel-body">
+          {/* <label htmlFor="teaching_statement"></label> */}
           <textarea
             id="teaching_statement"
             name="teaching_statement"
             className="form-control"
-            rows="5"
+            rows="4.5"
+            required = {true}
             value={teachingStatement}onChange={(e) => setTeachingStatement(e.target.value)}
           ></textarea>
+          </div>
+          </div>
+          </div>
         </div>
         <div className="form-group">
-          <label htmlFor="rel_in">16. Any other relevant information. *</label>
+        <div className="panel panel-success">
+          <div className="panel-heading"style={{ fontWeight: 'bold' }}>16. Any other relevant information. * &nbsp;&nbsp;
+              <div className="panel-body">
+          {/* <label htmlFor="rel_in"></label> */}
           <textarea
             id="rel_in"
             name="rel_in"
             className="form-control"
-            rows="5"
+            rows="4.5"
+            required = {true}
             value={relIn}
             onChange={(e) => setRelIn(e.target.value)}
           ></textarea>
         </div>
+        </div>
+        </div>
+        </div>
         <div className="form-group">
-          <label htmlFor="prof_serv">17. Professional Service : Editorship/Reviewership *</label>
+        <div className="panel panel-success">
+          <div className="panel-heading"style={{ fontWeight: 'bold' }}>17. Professional Service : Editorship/Reviewership * &nbsp;&nbsp;
+              <div className="panel-body">
+          {/* <label htmlFor="prof_serv"></label> */}
           <textarea
             id="prof_serv"
             name="prof_serv"
             className="form-control"
-            rows="5"
+            rows="4.5"
+            required = {true}
             value={profServ}
             onChange={(e) => setProfServ(e.target.value)}
           ></textarea>
         </div>
+        </div>
+        </div>
+        </div>
         <div className="form-group">
-          <label htmlFor="jour_details">18. Detailed List of Journal Publications *</label>
+        <div className="panel panel-success">
+          <div className="panel-heading"style={{ fontWeight: 'bold' }}>18. Detailed List of Journal Publications * &nbsp;&nbsp;
+              <div className="panel-body">
+          {/* <label htmlFor="jour_details"></label> */}
           <textarea
             id="jour_details"
             name="jour_details"
             className="form-control"
-            rows="5"
+            rows="4.5"
+            required = {true}
             value={jourDetails}
             onChange={(e) => setJourDetails(e.target.value)}
           ></textarea>
         </div>
+        </div>
+        </div>
+        </div>
         <div className="form-group">
-          <label htmlFor="conf_details">19. Detailed List of Conference Publications *</label>
+        <div className="panel panel-success">
+          <div className="panel-heading"style={{ fontWeight: 'bold' }}>19. Detailed List of Conference Publications * &nbsp;&nbsp;
+              <div className="panel-body">
+          <label htmlFor="conf_details"></label>
           <textarea
             id="conf_details"
             name="conf_details"
             className="form-control"
-            rows="5"
+            rows="4.5"
             value={confDetails}
+            required = {true}
             onChange={(e) => setConfDetails(e.target.value)}
           ></textarea>
+        </div>
+        </div>
+        </div>
         </div>
         <button type="submit" className="btn btn-success pull-right">SAVE & NEXT</button>
         <div className="col-md-11">
@@ -199,7 +240,7 @@ const RelInfo = () => {
                   </div>
       </form>
 
-      <div id="footer"></div>
+      {/* <div id="footer"></div> */}
       </div>
       </div>
       </body>

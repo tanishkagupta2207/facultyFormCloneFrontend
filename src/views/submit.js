@@ -49,6 +49,16 @@ const SubmitForm = () => {
     }
   }
 
+  
+  const handleBack = async(e) => {
+    e.preventDefault();
+    try {
+      navigate(`/form7/${userId}`);
+    }
+    catch(error){
+      navigate(`/form7/${userId}`);
+    }
+  }
  
   return (
     <html>
@@ -126,7 +136,9 @@ const SubmitForm = () => {
                     <div class="col-md-12">
                       <button id="submit" type="submit" name="submit" value="Submit" class="btn btn-success pull-right">SAVE & SUBMIT</button>
                     </div>
-
+                    <div className="col-md-11">
+                      <button id="back" type="back" name="back" value="Back" className="btn btn-success pull-left" onClick= {handleBack}>BACK</button>
+                  </div>
                   </div>
                 </fieldset>
                 </form>
