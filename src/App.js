@@ -10,6 +10,7 @@ import EmploymentDetails from "./views/form3";
 import PublicationDetails from "./views/form4";
 import RelInfo from "./views/form7";
 import SubmitForm from "./views/submit";
+import Print from "./views/print";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/form4/:userId" element={<PublicationDetails/>} />
           <Route path="/submit/:userId" element={<SubmitForm/>} />
           <Route path="/form7/:userId" element={<RelInfo/>} />
+          <Route path="/print/:userId" element={<Print/>} />
         </Routes>
       </div>
     </Router>
