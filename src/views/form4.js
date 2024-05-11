@@ -188,7 +188,7 @@ const PublicationDetails = () => {
           window.location.reload();
         }
         else{
-          navigate(`/form2/${userId}`);
+          navigate(`/submit/${userId}`);
         }
       }
     } catch (error) {
