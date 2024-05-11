@@ -67,15 +67,19 @@ const EmploymentDetails = () => {
   const [areasOfSpecialization, setAreasOfSpecialization] = useState('');
   const [currentAreasOfResearch, setCurrentAreasOfResearch] = useState('');
 
-  const handlePresentEmploymentChange = (e) => {
-    setPresentEmployment({ ...presentEmployment, [e.target.name]: e.target.value });
-  };
-
   const handleExperienceChange = (index, e) => {
     const values = [...experienceDetails];
     values[index][e.target.name] = e.target.value;
     setExperienceDetails(values);
   };
+
+  
+  const handlePresentEmployementChange = (e) =>{
+    const values = presentEmployment;
+    const name = e.target.name;
+    values[name] = e.target.value;
+    setPresentEmployment(values);
+  }
 
   const handleTeachingExperienceChange = (index, e) => {
     const values = [...teachingExperience];
@@ -188,18 +192,19 @@ const EmploymentDetails = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
+      console.log(presentEmployment);
       const response = await axios.post(`http://localhost:5000/api/form3/${userId}`, {presentEmployment,experienceDetails,teachingExperience, researchExperience, industrialExperience, areasOfSpecialization, currentAreasOfResearch});
-      if(response.data.message){
+      console.log(response);
+      if(response.data){
         alert(response.data.message);
         if(response.data.message !== 'Successful'){
-          window.location.reload();
         }
         else{
           navigate(`/form4/${userId}`);
         }
       }
     } catch (error) {
-      console.error('Login error:', error.response.data);
+      console.error('Login error:', error.response);
     }
   };
 
@@ -249,7 +254,7 @@ const EmploymentDetails = () => {
             <h3 style={{color: '#e10425', marginBottom: '20px', fontWeight: 'bold', textAlign: 'center',fontFamily: 'Noto Serif'}} class="blink_me">Application for Faculty Position</h3>
                 
             <div class="col-xs-12 col-sm-12 col-md-12 well"  style={{paddingLeft:'200px', paddingRight: '200px'}}>
-                <form className="form-horizontal" onSubmit={handleSubmit} >
+                <form className="form-horizontal" >
                 <fieldset>
                     <legend>
                     <div className="row">
@@ -272,19 +277,19 @@ const EmploymentDetails = () => {
                             <div className="form-group">
                             <label className="col-md-2 control-label" htmlFor="pres_emp_position">Position</label>
                             <div className="col-md-4">
-                                <input id="pres_emp_position" name="pres_emp_position" type="text" placeholder="Position" className="form-control input-md" value={presentEmployment.position} onChange={handlePresentEmploymentChange} required />
+                                <input id="pres_emp_position" name="position" type="text" placeholder="Position" className="form-control input-md" value={presentEmployment.position} onChange={(e)=>handlePresentEmployementChange(e)} required />
                             </div>
 
                             <label className="col-md-2 control-label" htmlFor="pres_emp_employer">Organization/Institution</label>
                             <div className="col-md-4">
-                                <input id="pres_emp_employer" name="pres_emp_employer" type="text" placeholder="Organization/Institution" className="form-control input-md" value={presentEmployment.employer} onChange={handlePresentEmploymentChange} />
+                                <input id="pres_emp_employer" name="employer" type="text" placeholder="Organization/Institution" className="form-control input-md" value={presentEmployment.employer} onChange={(e)=>handlePresentEmployementChange(e)} />
                             </div>
                             </div>
 
                             <div className="form-group">
                             <label className="col-md-2 control-label" htmlFor="pres_status">Status</label>
                             <div className="col-md-4">
-                                <select id="pres_status" name="pres_status" className="form-control input-md" value={presentEmployment.status} onChange={handlePresentEmploymentChange} required>
+                                <select id="pres_status" name="status" className="form-control input-md" value={presentEmployment.status} onChange={(e)=>handlePresentEmployementChange(e)} required>
                                 <option value="">Select</option>
                                 <option value="Central Govt.">Central Govt.</option>
                                 <option value="State Government">State Government</option>
@@ -297,25 +302,24 @@ const EmploymentDetails = () => {
                             
                                 <label className="col-md-2 control-label" htmlFor="pres_emp_doj">Date of Joining</label>
                                 <div className="col-md-4">
-                                <input id="pres_emp_doj" className="form-control input-md" name="pres_emp_doj" type="text" placeholder="Date of Joining" value={presentEmployment.doj} onChange={setPresentEmployment} required />
+                                <input id="pres_emp_doj" className="form-control input-md" name="doj" type="text" placeholder="Date of Joining" value={presentEmployment.doj} onChange={(e)=>handlePresentEmployementChange(e)} required />
                                 </div>
                                 </div>
                                 
                                 <div className="form-group">
                                 <label className="col-md-2 control-label" htmlFor="pres_emp_dol">Date of Leaving <br />(Mention Continue if working)</label>
                                 <div className="col-md-4">
-                                <input id="pres_emp_dol" className="form-control input-md" name="pres_emp_dol" type="text" placeholder="Date of Leaving" value={presentEmployment.dol} onChange={setPresentEmployment} required />
+                                <input id="pres_emp_dol" className="form-control input-md" name="dol" type="text" placeholder="Date of Leaving" value={presentEmployment.dol} onChange={(e)=>handlePresentEmployementChange(e)} required />
                                 </div>
                             <label className="col-md-2 control-label" htmlFor="pres_emp_duration">Duration (in years & months)</label>
                             <div className="col-md-4">
-                                <input id="pres_emp_duration" className="form-control input-md" name="pres_emp_duration" type="text" placeholder="Duration"  value={presentEmployment.duration} onChange={handlePresentEmploymentChange} required />
+                                <input id="pres_emp_duration" className="form-control input-md" name="duration" type="text" placeholder="Duration"  value={presentEmployment.duration} onChange={(e)=>handlePresentEmployementChange(e)} required />
                             </div>
                             </div>
                         </div>
                         </div>
                     </div>
                     </div>
-
                     <div className="row">
                     <div className="col-md-12">
                         <div className="panel panel-success">
@@ -323,7 +327,7 @@ const EmploymentDetails = () => {
                         <div className="panel-body">
                             <table className="table table-bordered">
                             <tbody id="exp">
-                                {experienceDetails.map((detail, index) => (
+                                {experienceDetails && experienceDetails.length>0 && experienceDetails.map((detail, index) => (
                                 <tr key={index}>
                                     <td>
                                     <input id={`exp_sno_${index}`} name="sno" type="text" value={index + 1} placeholder="" className="form-control input-md" readOnly required />
@@ -368,7 +372,7 @@ const EmploymentDetails = () => {
                         <div className="panel-body">
                             <table className="table table-bordered">
                             <tbody id="t_exp">
-                                {teachingExperience.map((detail, index) => (
+                                {teachingExperience && teachingExperience.length>0 && teachingExperience.map((detail, index) => (
                                 <tr key={index}>
                                     <td>
                                     <input id={`t_exp_sno_${index}`} name="sno" type="text" value={index + 1} placeholder="" className="form-control input-md" readOnly required />
@@ -425,7 +429,7 @@ const EmploymentDetails = () => {
                         <div className="panel-body">
                             <table className="table table-bordered">
                             <tbody id="exp">
-                                {researchExperience.map((detail, index) => (
+                                {researchExperience && researchExperience.length>0 && researchExperience.map((detail, index) => (
                                 <tr key={index}>
                                     <td>
                                     <input id={`r_exp_sno_${index}`} name="sno" type="text" value={index + 1} placeholder="" className="form-control input-md" readOnly required />
@@ -473,7 +477,7 @@ const EmploymentDetails = () => {
                         <div className="panel-body">
                             <table className="table table-bordered">
                             <tbody id="exp">
-                                {industrialExperience.map((detail, index) => (
+                                {industrialExperience && industrialExperience.length>0 && industrialExperience.map((detail, index) => (
                                 <tr key={index}>
                                     <td>
                                     <input id={`i_exp_sno_${index}`} name="sno" type="text" value={index + 1} placeholder="" className="form-control input-md" readOnly required />
@@ -538,7 +542,7 @@ const EmploymentDetails = () => {
                     </div>
                     
                     <div class="col-md-11">
-                        <button id="submit" type="submit" name="submit" value="Submit" class="btn btn-success pull-right" style={{marginLeft: '75%'}}>SAVE & NEXT</button>
+                        <button id="submit" type="submit" name="submit" value="Submit" class="btn btn-success pull-right" style={{marginLeft: '75%'}} onClick={handleSubmit}>SAVE & NEXT</button>
                     </div>
 
                     
