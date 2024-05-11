@@ -155,7 +155,7 @@ const PublicationDetails = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/form4/${userId}`);
+      const response = await axios.get(`http://facultyForm-backend:5000/api/form4/${userId}`);
       const {data1, data2, data3, data4, data5, gschlink, fname, lname} = response.data;
       setSummaryOfPublication(data1);
       setTenBestPub(data2);
@@ -180,7 +180,7 @@ const PublicationDetails = () => {
     console.log(summaryOfPublication);
     console.log(patents);
     try {
-      const response = await axios.post(`http://localhost:5000/api/form4/${userId}`, {summaryOfPublication, tenBestPub, patents, book, bookChap, gschlink});
+      const response = await axios.post(`http://facultyForm-backend:5000/api/form4/${userId}`, {summaryOfPublication, tenBestPub, patents, book, bookChap, gschlink});
       console.log(response.data);
       if(response.data.message){
         alert(response.data.message);

@@ -101,7 +101,7 @@ const EmploymentDetails = () => {
 
   const fetchData = async () => {
         try {
-        const response = await axios.get(`http://localhost:5000/api/form3/${userId}`);
+        const response = await axios.get(`http://facultyForm-backend:5000/api/form3/${userId}`);
         const {data1,data2,data3,data4,data5,data6,data7,data8,data9} = response.data;
         setPresentEmployment(data1);
         setExperienceDetails(data2);
@@ -193,7 +193,7 @@ const EmploymentDetails = () => {
     e.preventDefault();
     try {
       console.log(presentEmployment);
-      const response = await axios.post(`http://localhost:5000/api/form3/${userId}`, {presentEmployment,experienceDetails,teachingExperience, researchExperience, industrialExperience, areasOfSpecialization, currentAreasOfResearch});
+      const response = await axios.post(`http://facultyForm-backend:5000/api/form3/${userId}`, {presentEmployment,experienceDetails,teachingExperience, researchExperience, industrialExperience, areasOfSpecialization, currentAreasOfResearch});
       console.log(response);
       if(response.data){
         alert(response.data.message);
