@@ -259,7 +259,7 @@ const PublicationDetails = () => {
                       <h4>Welcome : <font color="#025198"><strong>{fname} {lname}</strong></font></h4>
                     </div>
                     <div className="col-md-2">
-                      <button type="button" className="btn btn-sm btn-success pull-right">Logout</button>
+                        <button type="button" style={{backgroundColor: '#5cb85c', color: '#fff'}} className="btn btn-sm btn-successpull-right" onClick={() => window.location.href = "http://localhost:3000/"}>Logout</button>
                     </div>
                   </div>
                 </legend>

@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const EmploymentDetails = () => {
-
+  
     const navigate = useNavigate(); 
     const [fname,setFName] = useState('');
     const [lname,setLName] = useState('');
@@ -262,7 +262,7 @@ const EmploymentDetails = () => {
                         <h4>Welcome : <font color="#025198"><strong>{fname} {lname}</strong></font></h4>
                         </div>
                         <div className="col-md-2">
-                        <a href="https://ofa.iiti.ac.in/facrec_che_2023_july_02/layout" className="btn btn-sm btn-success pull-right" onClick={() => window.location.href = "http://localhost:3000/"}>Logout</a>
+                          <button type="button" style={{backgroundColor: '#5cb85c', color: '#fff'}} className="btn btn-sm btn-successpull-right" onClick={() => window.location.href = "http://localhost:3000/"}>Logout</button>
                         </div>
                     </div>
                     </legend>

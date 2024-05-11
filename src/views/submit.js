@@ -41,7 +41,7 @@ const SubmitForm = () => {
           window.location.reload();
         }
         else{
-          navigate(`/`);
+          navigate(`/print/${userId}`);
         }
       }
     } catch (error) {
