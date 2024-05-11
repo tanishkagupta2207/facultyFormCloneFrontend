@@ -323,7 +323,7 @@ const EmploymentDetails = () => {
                         <div className="panel-body">
                             <table className="table table-bordered">
                             <tbody id="exp">
-                                {experienceDetails.map((detail, index) => (
+                                {experienceDetails && experienceDetails.length>0 && experienceDetails.map((detail, index) => (
                                 <tr key={index}>
                                     <td>
                                     <input id={`exp_sno_${index}`} name="sno" type="text" value={index + 1} placeholder="" className="form-control input-md" readOnly required />
@@ -368,7 +368,7 @@ const EmploymentDetails = () => {
                         <div className="panel-body">
                             <table className="table table-bordered">
                             <tbody id="t_exp">
-                                {teachingExperience.map((detail, index) => (
+                                {teachingExperience && teachingExperience.length>0 && teachingExperience.map((detail, index) => (
                                 <tr key={index}>
                                     <td>
                                     <input id={`t_exp_sno_${index}`} name="sno" type="text" value={index + 1} placeholder="" className="form-control input-md" readOnly required />
@@ -425,7 +425,7 @@ const EmploymentDetails = () => {
                         <div className="panel-body">
                             <table className="table table-bordered">
                             <tbody id="exp">
-                                {researchExperience.map((detail, index) => (
+                                {researchExperience && researchExperience.length>0 && researchExperience.map((detail, index) => (
                                 <tr key={index}>
                                     <td>
                                     <input id={`r_exp_sno_${index}`} name="sno" type="text" value={index + 1} placeholder="" className="form-control input-md" readOnly required />
@@ -473,7 +473,7 @@ const EmploymentDetails = () => {
                         <div className="panel-body">
                             <table className="table table-bordered">
                             <tbody id="exp">
-                                {industrialExperience.map((detail, index) => (
+                                {industrialExperience && industrialExperience.length>0 && industrialExperience.map((detail, index) => (
                                 <tr key={index}>
                                     <td>
                                     <input id={`i_exp_sno_${index}`} name="sno" type="text" value={index + 1} placeholder="" className="form-control input-md" readOnly required />
